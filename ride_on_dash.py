@@ -111,9 +111,35 @@ app.layout = html.Div([
     )
 
 def plot_laneId(selected_laneId):
-    dff = totems.copy()
-    dff = dff.loc[dff['laneId'] == selected_laneId]
-    fig = px.line(dff, y='intensity', title='Bike traffic intensity through time')
+    """
+    Time series lineplot
+    Input:
+        selected_laneId: lane id associated with the totem chosen in the dropdown
+    Output:
+        fig: plot of daily and weekly resampled time series together
+    """
+    df = totems.copy()
+    df = df.loc[df['laneId'] == selected_laneId]
+    df['daily'] = df['intensity']
+    del df['intensity']
+    dfw = df.copy()
+    dfw['weekly'] = dfw['daily'].resample('W').mean()
+    df['weekly'] = dfw['weekly']
+    df['weekly'] = df['weekly'].interpolate(method='spline', order=2)
+    fig = px.line(df,
+                  y=['daily', 'weekly'],
+                  title='Bike traffic intensity through time',
+                  color_discrete_sequence=['#ca0020', '#252525'],
+                  template='plotly_white')
+    fig = fig.update_xaxes(title_text='Date')
+    fig = fig.update_yaxes(title_text='Intensity')
+    fig = fig.update_layout(title_font_size=21,
+                            title_x=0.75,
+                            title_y=0.85,
+                            legend_title_text='time basis',
+                            legend_y=0.93,
+                            legend_x=0.83,
+                            margin_l=90)
     return fig
 
 
