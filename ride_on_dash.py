@@ -26,11 +26,11 @@ app = dash.Dash(__name__)
 # ----------- dash components -----------
 
 app.layout = html.Div([
-    dbc.Row(dbc.Col(html.H1('Bike traffic visualization',
+    dbc.Row(dbc.Col(html.H1('A year of biking in Montpellier',
                             className='text-center')
                     ),
             ),
-    dbc.Row(dbc.Col(html.H3('A year of riding in Montpellier',
+    dbc.Row(dbc.Col(html.H3('Bike traffic visualization',
                             className='text-center'),
                     # width={'size': 6, 'offset': 4},
                     ),
