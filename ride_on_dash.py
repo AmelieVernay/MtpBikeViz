@@ -129,7 +129,7 @@ def plot_laneId(selected_laneId):
     df.index = pd.to_datetime(df.index)
     df['weekly'] = dfw['weekly'].interpolate()
     fig = px.line(df, y=['daily', 'weekly'],
-            title='Bike traffic intensity through time',
+            title='Bike traffic intensity through time around {}'.format(df.iloc[1]['name']),
             color_discrete_sequence = ["#ca0020", "#252525"],
             template="plotly_white")
     fig = fig.update_xaxes(title_text='Date')
