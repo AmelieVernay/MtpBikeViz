@@ -26,6 +26,7 @@ app = dash.Dash(__name__)
 # ----------- dash components -----------
 
 app.layout = html.Div([
+    html.Br(),
     dbc.Row(dbc.Col(html.H1('A year of biking in Montpellier',
                             className='text-center')
                     ),
@@ -37,50 +38,60 @@ app.layout = html.Div([
             ),
     html.Br(),
     html.Br(),
-    dbc.Row(dbc.Col(dcc.Markdown('''This app is currently in construction !
-                '''),
-                width={'size': 11, "offset": 1}
-                    )
-            ),
-    html.Br(),
-    dbc.Row(dbc.Col(dcc.Markdown('''This app proposes a visualization of the Montpellier Méditerrannée Open Data
-                relative to bike traffic, available 
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
+                This app proposes a visualization of the Montpellier Méditerrannée
+                Open Data relative to bike traffic, available 
                 [here](https://data.montpellier3m.fr/dataset/comptages-velo-et-pieton-issus-des-eco-compteurs).
+                The choice was made to consider data from the whole previous year.
                 '''),
-                width={'size': 11, "offset": 1}
-                    )
+            width={'size': 11, "offset": 1})
+            ),
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
+                This app was made using Python and the code is hosted
+                [here on GitHub](https://github.com/AmelieVernay/MtpBikeViz).
+                '''),
+            width={'size': 11, "offset": 1})
             ),
     html.Br(),
-    dbc.Row(dbc.Col(dcc.Markdown('''Scroll down to see the different options. Have fun!'''),
-                        width={'size': 11, "offset": 1}
-                        )
-                ),
-    html.Br(),
-    dbc.Row(dbc.Col(dcc.Markdown('''Below is an interactive map that shows the location 
-                                    of the different totems in Montpellier and surroundings. 
-                                    Try to click on the markers!
-                                '''),
-                width={'size': 11, "offset": 1}
-                    )
-            ),
-    dbc.Row(dbc.Col(html.Iframe(id='map',
-                                srcDoc=open(os.path.join(dir_path, 'totem_map.html'), 'r').read(),
-                                width='100%', height='600'),
-                            width={'size': 10, 'offset': 1},
-                    ),
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
+                Scroll down to see the different options. Have fun!
+                '''),
+            width={'size': 11, "offset": 1})
             ),
     html.Br(),
-    html.Br(),
-    dbc.Row(dbc.Col(dcc.Markdown('''Below is an interactive graph showing the intensity 
-                                    of bike traffic around the different totems.
-                                    You can select one an 'navigate' on the line chart,  
-                                    zoom in and out...
-                                '''),
-                width={'size': 11, "offset": 1}
-                    )
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
+                Below is an interactive map that shows the location
+                of the different totems in Montpellier and surroundings.
+                You can click on markers to get informations!
+                '''),
+            width={'size': 11, "offset": 1})
             ),
-    dbc.Row(dbc.Col(dcc.Dropdown(id="slct_totem", multi=False, value='Tanneurs',
-                 options=[
+    dbc.Row(dbc.Col(html.Iframe(
+                id='map',
+                srcDoc=open(os.path.join(dir_path, 'totem_map.html'), 'r').read(),
+                width='100%', height='600'),
+            width={'size': 10, 'offset': 1})
+            ),
+    html.Br(),
+    html.Br(),
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
+                Below is an interactive graph showing the intensity 
+                of bike traffic around the different totems.
+                You can select one an 'navigate' on the line chart,  
+                zoom in and out...
+                '''),
+            width={'size': 11, "offset": 1})
+            ),
+    dbc.Row(dbc.Col(dcc.Dropdown(
+                id="slct_totem",
+                multi=False,
+                value='Tanneurs',
+                options=[
                      {"label": "Tanneurs", "value": 188609530},
                      {"label": "Berracasa", "value": 121403593},
                      {"label": "Celleneuve", "value": 734202564},
@@ -91,14 +102,16 @@ app.layout = html.Div([
                      {"label": "Lattes2", "value": 25871951},
                      {"label": "Lattes1", "value": 137058167}],
                      placeholder="Select a totem"),
-                 width={'size': 3, "offset": 2}
-                 ),
+            width={'size': 3, "offset": 2})
             ),
     html.Br(),
-    dbc.Row(dbc.Col(dcc.Graph(id='my_graph', figure={}, style={'width': "100%"}),
-                    width={'size': 10, 'offset': 1}
-                    ),
+    dbc.Row(dbc.Col(dcc.Graph(
+                id='my_graph',
+                figure={},
+                style={'width': "100%"}),
+            width={'size': 10, 'offset': 1})
             ),
+    html.Br(),
     html.Br()
 ])
 
