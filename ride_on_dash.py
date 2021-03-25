@@ -43,6 +43,11 @@ app.layout = html.Div([
                 This app proposes a visualization of the Montpellier Méditerrannée
                 Open Data relative to bike traffic, available 
                 [here](https://data.montpellier3m.fr/dataset/comptages-velo-et-pieton-issus-des-eco-compteurs).
+                '''),
+            width={'size': 11, "offset": 1})
+            ),
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
                 The choice was made to consider data from the whole previous year.
                 '''),
             width={'size': 11, "offset": 1})
@@ -55,7 +60,7 @@ app.layout = html.Div([
             width={'size': 11, "offset": 1})
             ),
     html.Br(),
-    dbc.Row(dbc.Col(dcc.Markdown(
+    dbc.Row(dbc.Col(html.H4(
                 '''
                 Scroll down to see the different options. Have fun!
                 '''),
