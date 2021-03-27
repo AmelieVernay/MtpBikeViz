@@ -6,9 +6,6 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
-# import plotly.graph_objects as go
-# import matplotlib.pyplot as plt
-# import seaborn as sns
 import plotly.express as px
 import pandas as pd
 import os
@@ -40,21 +37,24 @@ app.layout = html.Div([
     html.Br(),
     dbc.Row(dbc.Col(dcc.Markdown(
                 '''
-                Several bike counting totems are installed in Montpellier and surroundings.
+                Several bike counting totems are installed in Montpellier
+                and surroundings.
                 '''),
             width={'size': 11, "offset": 1})
             ),
     dbc.Row(dbc.Col(dcc.Markdown(
                 '''
-                This app proposes a visualization of the Montpellier Méditerrannée
-                Open Data relative to these totems, available 
+                This app proposes a visualization of the
+                Montpellier Méditerrannée Open Data
+                relative to these totems, available
                 [here](https://data.montpellier3m.fr/dataset/comptages-velo-et-pieton-issus-des-eco-compteurs).
                 '''),
             width={'size': 11, "offset": 1})
             ),
     dbc.Row(dbc.Col(dcc.Markdown(
                 '''
-                The choice was made to consider data from the whole previous year.
+                The choice was made to consider data from
+                the whole previous year.
                 '''),
             width={'size': 11, "offset": 1})
             ),
@@ -83,7 +83,8 @@ app.layout = html.Div([
             ),
     dbc.Row(dbc.Col(html.Iframe(
                 id='map',
-                srcDoc=open(os.path.join(dir_path, 'totem_map.html'), 'r').read(),
+                srcDoc=open(os.path.join(dir_path, 'totem_map.html'), 'r')
+                .read(),
                 width='100%', height='600'),
             width={'size': 10, 'offset': 1})
             ),
@@ -91,9 +92,9 @@ app.layout = html.Div([
     html.Br(),
     dbc.Row(dbc.Col(dcc.Markdown(
                 '''
-                Below is an interactive graph showing the intensity 
+                Below is an interactive graph showing the intensity
                 of bike traffic around the different totems.
-                You can select one an 'navigate' on the line chart,  
+                You can select one an 'navigate' on the line chart,
                 zoom in and out...
                 '''),
             width={'size': 11, "offset": 1})
@@ -125,17 +126,18 @@ app.layout = html.Div([
     html.Br(),
     dbc.Row(dbc.Col(dcc.Markdown(
                 '''
-                Below is an animated and interactive map showing the intensity 
+                Below is an animated and interactive map showing the intensity
                 of bike traffic around the different totems.
                 You can hover the mouse over bubbles to get informations.
                 '''),
             width={'size': 11, "offset": 1})
             ),
-    dbc.Row(dbc.Col(html.Iframe(id='bubblemap',
-                                srcDoc=open(os.path.join(dir_path, 'bubblemap.html'), 'r').read(),
-                                width='1030', height='630'),
-                    width={'size': 8, 'offset': 2},
-                    ),
+    dbc.Row(dbc.Col(html.Iframe(
+                id='bubblemap',
+                srcDoc=open(
+                    os.path.join(dir_path, 'bubble_map.html'), 'r').read(),
+                width='1030', height='630'),
+            width={'size': 8, 'offset': 2})
             ),
     html.Br(),
     html.Br()
@@ -148,12 +150,12 @@ app.layout = html.Div([
     Output(component_id='my_graph', component_property='figure'),
     [Input(component_id='slct_totem', component_property='value')]
     )
-
 def plot_laneId(selected_laneId):
     """
     Time series lineplot
     Input:
-        selected_laneId: lane id associated with the totem chosen in the dropdown
+        selected_laneId: lane id associated with
+        the totem chosen in the dropdown
     Output:
         fig: plot of daily and weekly resampled time series together
     """
@@ -167,10 +169,13 @@ def plot_laneId(selected_laneId):
     df['weekly'] = dfw['weekly']
     df.index = pd.to_datetime(df.index)
     df['weekly'] = dfw['weekly'].interpolate()
-    fig = px.line(df, y=['daily', 'weekly'],
-            title='Bike traffic intensity through time around {}'.format(df.iloc[1]['name']),
-            color_discrete_sequence = ["#ca0020", "#252525"],
-            template="plotly_white")
+    name = df.iloc[1]['name']
+    fig = px.line(
+            df,
+            y=['daily', 'weekly'],
+            title=f'Bike traffic intensity through time around {name}',
+            color_discrete_sequence=["#ca0020", "#252525"],
+                  template="plotly_white")
     fig = fig.update_xaxes(title_text='Date')
     fig = fig.update_yaxes(title_text='Intensity')
     fig = fig.update_layout(title_font_size=21,
@@ -183,6 +188,7 @@ def plot_laneId(selected_laneId):
     return fig
 
 # ----------- running app -----------
+
 
 if __name__ == '__main__':
     app.run_server(debug=True, use_reloader=False)
