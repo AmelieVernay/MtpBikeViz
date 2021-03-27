@@ -123,6 +123,14 @@ app.layout = html.Div([
             width={'size': 10, 'offset': 1})
             ),
     html.Br(),
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
+                Below is an animated and interactive map showing the intensity 
+                of bike traffic around the different totems.
+                You can hover the mouse over bubbles to get informations.
+                '''),
+            width={'size': 11, "offset": 1})
+            ),
     dbc.Row(dbc.Col(html.Iframe(id='bubblemap',
                                 srcDoc=open(os.path.join(dir_path, 'bubblemap.html'), 'r').read(),
                                 width='1030', height='630'),
