@@ -40,8 +40,14 @@ app.layout = html.Div([
     html.Br(),
     dbc.Row(dbc.Col(dcc.Markdown(
                 '''
+                Several bike counting totems are installed in Montpellier and surroundings.
+                '''),
+            width={'size': 11, "offset": 1})
+            ),
+    dbc.Row(dbc.Col(dcc.Markdown(
+                '''
                 This app proposes a visualization of the Montpellier Méditerrannée
-                Open Data relative to bike traffic, available 
+                Open Data relative to these totems, available 
                 [here](https://data.montpellier3m.fr/dataset/comptages-velo-et-pieton-issus-des-eco-compteurs).
                 '''),
             width={'size': 11, "offset": 1})
@@ -106,7 +112,7 @@ app.layout = html.Div([
                      {"label": "Gerhardt", "value": 23231541},
                      {"label": "Lattes2", "value": 25871951},
                      {"label": "Lattes1", "value": 137058167}],
-                     placeholder="Select a totem"),
+                placeholder="Select a totem"),
             width={'size': 3, "offset": 2})
             ),
     html.Br(),
@@ -115,6 +121,13 @@ app.layout = html.Div([
                 figure={},
                 style={'width': "100%"}),
             width={'size': 10, 'offset': 1})
+            ),
+    html.Br(),
+    dbc.Row(dbc.Col(html.Iframe(id='bubblemap',
+                                srcDoc=open(os.path.join(dir_path, 'bubblemap.html'), 'r').read(),
+                                width='100%', height='630'),
+                    width={'size': 10, 'offset': 1},
+                    ),
             ),
     html.Br(),
     html.Br()
