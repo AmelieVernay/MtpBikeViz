@@ -69,59 +69,10 @@ for i in range(len(data_file)):
 
 data_file.to_csv(os.path.join(dir_path, 'geoinfo.csv'))
 
-# ----------- plotting part -----------
-#  
-#  sns.set(rc={'figure.figsize': (20, 7)})
-#  palette = sns.color_palette("colorblind")
-#  
-#  
-#  def ts_plot(df, number, name):
-#      """
-#      Time series lineplot
-#      Inputs:
-#          df: dataframe (with datetime objects in index column,
-#                         and an 'intensity' column)
-#          number: integer (for the image name)
-#          name: string (for the title of the plot)
-#      Output:
-#          fig: plot of daily and weekly resampled time series together
-#          saves the image
-#      """
-#      save_path = os.path.join(dir_path, 'images')
-#  
-#      weekly = df.resample('W').mean()
-#      start = df.index[0]
-#      end = df.index[-1]
-#      # Plot daily and weekly resampled time series together
-#      # daily:
-#      sns.set_theme(style="whitegrid")
-#      fig, ax = plt.subplots()
-#      ax.plot(df.loc[start:end, 'intensity'],
-#              marker='.', linestyle='-', label='Daily', color=palette[3])
-#      # weekly:
-#      ax.plot(weekly.loc[start:end, 'intensity'],
-#              marker='o', markersize=5, linestyle='-',
-#              label='Weekly Mean Resample', color=palette[0])
-#      ax.set_ylabel('Bike traffic intensity', fontsize=17)
-#      plt.title(name, fontsize=37)
-#      ax.legend()
-#      fig.savefig(os.path.join(save_path, 'im{}.png'.format(number)))
-#  
-#  
-#  # plot and save images
-#  unique = data_file['laneId'].unique()
-#  
-#  for i in range(len(unique)):
-#      dff = data_file.copy()
-#      dff = dff.loc[dff['laneId'] == unique[i]]
-#      tot_name = dff['name'][i]
-#      ts_plot(dff, (i + 1), tot_name)
-
-
 # ----------- extracting geographic coordinates -----------
 
 names = ['Berracasa', 'Lavérune', 'Celleneuve',
-         'Lattes 2', 'Lattes 1', 'ViellePoste', 
+         'Lattes 2', 'Lattes 1', 'ViellePoste',
          'Gerhardt', 'Delmas', 'Tanneurs']
 
 

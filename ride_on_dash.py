@@ -153,6 +153,7 @@ app.layout = html.Div([
 def plot_laneId(selected_laneId):
     """
     Time series lineplot
+    -----
     Input:
         selected_laneId: lane id associated with
         the totem chosen in the dropdown
