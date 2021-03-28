@@ -5,7 +5,10 @@ This repository contains my work for an individual challenge based on bike traff
 
 -----
 
-The final result is [this Dash application](http://amelievernay.pythonanywhere.com/), hosted on the web by [pythonanywhere](https://www.pythonanywhere.com/).
+<div style="float: left;"><img src="icon_biker.png" width="19" height="19"/></div>
+
+&nbsp;&nbsp;
+The final result is [this Dash application](http:/amelievernay.pythonanywhere.com/), hosted on the webby [pythonanywhere](https://www.pythonanywhere.com/).
 
 -----
 
